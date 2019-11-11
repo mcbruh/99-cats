@@ -1,0 +1,46 @@
+<h1>Edit <%= cat_url(@kitty) %> %></h1>
+
+<form action="<%= cat_url(@kitty) %>" method="post">
+    <input type="hidden" name="_method" value="PATCH">
+
+    <label for="name">Name</label>
+    <input id="name" type="text" name="cat[name]" value="<%= @cat.name %>">
+
+    <br>
+
+    <label for="birth_date">Birth Date</label>
+    <input id="birth_date" type="date" name="cat[birth_date]">
+
+    <br>
+
+    <label for="color">Color</label>
+    <select id="color" name="cat[color]">
+        <option disabled>-- select a color --</option>
+        <option value="White" <%= @kitty.color == "White" ? "selected" : "" %> >White</option>
+        <option value="Black" <%= @kitty.color == "Black" ? "selected" : "" %> >Black</option>
+        <option value="Ginger" <%= @kitty.color == "Ginger" ? "selected" : "" %> >Ginger</option>
+        <option value="Blue/Grey" <%= @kitty.color == "Blue/Grey" ? "selected" : "" %> >Blue/Grey</option>
+        <option value="Cream" <%= @kitty.color == "Cream" ? "selected" : "" %> >Cream</option>
+        <option value="Brown" <%= @kitty.color == "Brown" ? "selected" : "" %> >Brown</option>
+        <option value="Cinnamon" <%= @kitty.color == "Cinnamon" ? "selected" : "" %> >Cinnamon</option>
+        <option value="Fawn" <%= @kitty.color == "Fawn" ? "selected" : "" %> >Fawn</option>
+    </select>
+
+    <br>
+
+    <label for="sex">Sex</label>
+    <select id="sex" name="cat[sex]">
+        <option disabled>-- select a sex --</option>
+        <option value="M" <%= @kitty.sex == "M" ? "selected" : "" %> >M</option>
+        <option value="F" <%= @kitty.sex == "F" ? "selected" : "" %> >F</option>
+    </select>
+
+    <br>
+
+    <label for="description">Description</label>
+    <textarea id="description" name="cat[description]"></textarea>
+        <%= @kitty.description %>
+    <br>
+
+    <input type="submit" value="Update cat">
+</form>
