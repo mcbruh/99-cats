@@ -1,10 +1,14 @@
-<h1>Edit <%= @kitty.name %></h1>
 
-<%= render 'form', cat: @kitty, action: :edit %>
+<% if action == :edit %>
+    <% action_url = cat_url(@kitty) %>
+<% else %>
+    <% action_url = cats_url %>
+<% end %>
 
-<!-- 
-<form action="<%= cat_url(@kitty) %>" method="post">
-    <input type="hidden" name="_method" value="PATCH">
+<form action="<%= action_url %>" method="post">
+    <% if action == :edit %>
+        <input type="hidden" name="_method" value="PATCH">
+    <% end %>
 
     <label for="name">Name</label>
     <input id="name" type="text" name="cat[name]" value="<%= @kitty.name %>">
@@ -18,7 +22,7 @@
 
     <label for="color">Color</label>
     <select id="color" name="cat[color]">
-        <option disabled>-- select a color --</option>
+        <option disabled <%= cat.color ? "" : "selected" %>>-- select a color --</option>
         <option value="White" <%= @kitty.color == "White" ? "selected" : "" %> >White</option>
         <option value="Black" <%= @kitty.color == "Black" ? "selected" : "" %> >Black</option>
         <option value="Ginger" <%= @kitty.color == "Ginger" ? "selected" : "" %> >Ginger</option>
@@ -33,7 +37,7 @@
 
     <label for="sex">Sex</label>
     <select id="sex" name="cat[sex]">
-        <option disabled>-- select a sex --</option>
+        <option disabled <%= cat.sex ? "" : "selected" %>>-- select a sex --</option>
         <option value="M" <%= @kitty.sex == "M" ? "selected" : "" %> >M</option>
         <option value="F" <%= @kitty.sex == "F" ? "selected" : "" %> >F</option>
     </select>
@@ -45,6 +49,5 @@
         <%= @kitty.description %>
     <br>
 
-    <input type="submit" value="Update cat">
+    <input type="submit" value="<%= (action == :edit) ? 'update cat' : 'add cat' %>">
 </form>
--->

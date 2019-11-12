@@ -1,5 +1,8 @@
 <h1>Add cat!</h1>
 
+<%= render 'form', action: :new, cat: @kitty %>
+
+<!--
 <form action="<%= cats_url %>" method="post">
     <label for="name">Name</label>
     <input id="name" type="text" name="cat[name]">
@@ -42,3 +45,4 @@
 
     <input type="submit" value="Add cat to database">
 </form>
+-->

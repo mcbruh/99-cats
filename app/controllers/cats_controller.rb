@@ -16,6 +16,7 @@ class CatsController < ApplicationController
     end
 
     def new
+        @kitty = Cat.new
         render :new
     end
 
