@@ -7,4 +7,8 @@ class Cat < ApplicationRecord
     #COLORS = ["white", "black", "ginger", "blue/grey", "cream", "brown", "cinnamon", "fawn"]
     #SEX = ["M","F"]
 
+    def age
+        ((Time.now - birth_date.to_time) / 1.year.seconds).floor
+    end
+
 end
