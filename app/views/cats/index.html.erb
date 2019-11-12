@@ -1,7 +1,5 @@
 <h1>99 Cats</h1>
 
 <ul>
-    <% @cats.each do |kitty| %>
-        <li><%= kitty.name %></li>
-    <% end %>
+    <%= render @cats %>
 </ul>
