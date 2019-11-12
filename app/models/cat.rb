@@ -3,7 +3,8 @@ class Cat < ApplicationRecord
     validates :color, inclusion: { in: ["White", "Black", "Ginger", "Blue/Grey", "Cream", "Brown", "Cinnamon", "Fawn"] }, presence: true
     validates :sex, inclusion: { in: ["M","F"] }, presence: true
     validates :birth_date, :name, :description, presence: true
-
+    has_many :cat_rental_requests, dependent: :destroy
+    
     #COLORS = ["white", "black", "ginger", "blue/grey", "cream", "brown", "cinnamon", "fawn"]
     #SEX = ["M","F"]
 
