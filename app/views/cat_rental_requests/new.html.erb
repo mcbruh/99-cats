@@ -2,7 +2,7 @@
 
 <form action= <%= cat_rental_requests_url %> method="post">
 
-    <label for="cat_rental_request_cat_id">Cat</label>
+    <label for="cat_rental_requests_url">Cat</label>
     <select name="cat_rental_request[cat_id]" id="cat_rental_request_cat_id">
         <option disabled selected="true">-- Select a Cat --</option>
         <% Cat.all.each do |cat| %>
@@ -15,15 +15,23 @@
     <br>
 
     <label for="cat_rental_request_start_date">Start date</label>
-    <input type="date" id="cat_rental_request_start_date" value=<%= Date.today %>>
+    <input 
+        type="date" 
+        id="cat_rental_request_start_date"
+        name="cat_rental_request[start_date]" 
+        value=<%= Date.today %>>
 
     <br>
 
     <label for="cat_rental_request_end_date">End date</label>
-    <input type="date" id="cat_rental_request_end_date" value=<%= Date.tomorrow %>>
+    <input 
+        type="date" 
+        id="cat_rental_request_end_date" 
+        name="cat_rental_request[end_date]"
+        value=<%= Date.tomorrow %>>
 
     <br><br>
 
     <input type="submit" value="Create Rental Request">
-    
+
 </form>
