@@ -3,6 +3,7 @@ class CatRentalRequest < ApplicationRecord
     validates :cat_id, :start_date, :end_date, presence: true
     validates :status, inclusion: { in: ["PENDING", "APPROVED", "DENIED"] }, presence: true
     belongs_to :cat
+    validates :does_not_overlap_approved_request
 
     def overlapping_requests
         #A cat rental request starting on 02/25/17 and ending on 02/27/17.
@@ -29,7 +30,21 @@ class CatRentalRequest < ApplicationRecord
     end
 
     def does_not_overlap_approved_request
-        overlapping_requests.where(status: 'DENIED')
+       if overlapping_requests.exists?
+        errors[:base] << 'Request overlaps with existing approved request'
+       end
+    end
+
+    def overlapping_pending_requests
+        overlapping_requests.where(status: 'PENDING')
+    end
+
+    def approve!
+        CatRentalRequest.transaction do
+            self.status = "APPROVED"
+            self.save!
+            overlapping_pending_requests.update_all(status: 'DENIED')
+        end
     end
 
 end
