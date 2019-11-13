@@ -11,7 +11,7 @@ class CatRentalRequestsController < ApplicationController
     end
 
     def show
-        
+        @cat_rental_requests = CatRentalRequest.order(start_date: :desc)
     end
 
 end
