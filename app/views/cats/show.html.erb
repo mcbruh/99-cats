@@ -21,3 +21,14 @@
         </tr>
     </tbody>
 </table>
+
+<h3>Rental Requests for <%= @cat.name %></h2>
+<ol>
+    <% @rental_requests.each do |request| %>
+    <li>Start Date: <%= request.start_date %> End Date: <%= request.end_date %></li>
+        <% if request.status == 'PENDING' %>
+            <%= button_to "Approve", approve_cat_rental_request_url %>
+            <%= button_to "Deny", deny_cat_rental_request_url %>
+        <% end %>
+    <% end %>
+</ol>
