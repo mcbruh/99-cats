@@ -4,6 +4,7 @@
 
     <label for="cat_rental_request_cat_id">Cat</label>
     <select name="cat_rental_request[cat_id]" id="cat_rental_request_cat_id">
+        <option disabled selected="true">-- Select a Cat --</option>
         <% Cat.all.each do |cat| %>
             <option value="<%= cat.id %>">
                 <%= cat.name %>
